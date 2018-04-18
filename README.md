@@ -1,1 +1,1 @@
-![Alt Text](https://giphy.com/gifs/Dapulse-orange-machine-3o7btQ0NH6Kl8CxCfK)
+![Alt Text](https://media.giphy.com/media/3o7btQ0NH6Kl8CxCfK/giphy.gif)

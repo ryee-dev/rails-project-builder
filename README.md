@@ -28,6 +28,7 @@ end
 
 ## Features
 - [x] adds necessary gems to Gemfile
+- [x] bootstrap integration
 - [x] creates spec folder with rails_helper & spec_helper
 - [x] adds should matcher configuration to rails_helper
 - [x] creates migration file

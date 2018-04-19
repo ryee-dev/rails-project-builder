@@ -57,7 +57,7 @@ class Project
     system "rails db:create"
 
     # Creates migration file
-    system "rails g migration #{@table_name}"
+    system "rails generate migration #{@table_name}"
   end
 end
 

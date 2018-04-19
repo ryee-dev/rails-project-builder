@@ -8,8 +8,8 @@ class Project
   end
 
   def build
-    system "rails new #{@project_name}"
     FileUtils.cd '..'
+    system "rails new #{@project_name}"
     puts FileUtils.pwd
 
     FileUtils.cd "#{@project_name}"
@@ -19,12 +19,12 @@ class Project
       f << "\n"
       f << "# gems added through rails-project-builder\n"
       f << "gem 'jquery-rails'\n"
-      f << "gem 'bootstrap', '~> 4.0.0.beta2.1'\n"
+      f << "gem 'bootstrap'\n"
+      f << "gem 'bootstrap-sass'\n"
       f << "gem 'rspec-rails'\n"
       f << "gem 'launchy'\n"
       f << "gem 'pry'\n"
       f << "gem 'shoulda-matchers'\n"
-      f << "gem 'capybara'\n"
     end
 
     # Creates spec folder with rails_helper and spec_helper
@@ -40,24 +40,30 @@ class Project
       f << "end\n"
     end
 
+    # installs gems
+    system 'bundle install'
+
+    # updates gems
+    # system 'bundle update'
+
+    # adds bootstrap functionality
+    FileUtils.cd("app/assets/stylesheets/")
+    File.rename('application.css', 'application.scss')
+    File.open('application.scss', 'a+') do |f|
+      f << "@import 'bootstrap';"
+    end
+    FileUtils.cd('../../..')
     # Creates Database
     system "rails db:create"
 
     # Creates migration file
-    system "rails g migration create #{@table_name}"
-
-    system "rails db:migrate"
-
+    system "rails g migration #{@table_name}"
   end
 end
 
-puts "Enter Project Name: "
+puts "Enter Project Name:\n"
 project_name = gets.chomp
-puts "Enter Table Name (must be plural):  "
+puts "Enter db:migrate file name (must be plural)\nexample => create_examples_table or create_examples:\n"
 table_name = gets.chomp
-
-# eventually allows the user to generate tables
-# puts "Enter Table Name:"
-# puts "Enter Column Names and Datatypes"
 project = Project.new(project_name, table_name)
 project.build

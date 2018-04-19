@@ -1,5 +1,5 @@
 ## Setup
-1. Open terminal
+1. `git clone https://github.com/ryee926/rails-project-builder`
 2. `cd rails-project-builder`
 3. `ruby build.rb`
 4. Enter project name
